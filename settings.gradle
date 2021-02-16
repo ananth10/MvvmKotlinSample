@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "MvvmKotlinSample"
+rootProject.name = "Mvvm Kotlin Sample"

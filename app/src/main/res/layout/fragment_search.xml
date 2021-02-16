@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".features.SearchFragment">
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/TInputLay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_bias="0.5"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginRight="@dimen/dimen_30dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/TetUserName"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_40dp"
+                android:hint="@string/git_username"
+                android:singleLine="true"
+                android:paddingLeft="@dimen/dimen_5dp"
+                android:paddingRight="@dimen/dimen_5dp"
+                android:paddingTop="@dimen/dimen_5dp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/BtSubmit"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/dimen_30dp"
+            android:layout_marginRight="@dimen/dimen_30dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            app:layout_constraintTop_toBottomOf="@+id/TInputLay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/lightPrimaryText"
+            android:textColor="@color/primaryText"
+            android:text="@string/submit"
+            android:layout_height="@dimen/dimen_50dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

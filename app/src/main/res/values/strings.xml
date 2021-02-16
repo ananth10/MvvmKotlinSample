@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">MvvmKotlinSample</string>
+    <string name="app_name">Mvvm Kotlin Sample</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="profile">Profile</string>
+    <string name="followers">Followers</string>
+    <string name="followings">Followings</string>
+    <string name="gists">Gists</string>
+    <string name="repos">Repositories</string>
+    <string name="search">Search</string>
+    <string name="username">Username</string>
+    <string name="git_username">Github username</string>
+    <string name="location">Location</string>
+    <string name="submit">Submit</string>
+    <string name="company">Company</string>
+    <string name="need_username">Enter your profileEntity username</string>
+    <string name="no_result_found">No Result Found</string>
 </resources>

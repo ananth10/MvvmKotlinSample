@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navigation_search">
+
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="com.ananth.mvvmkotlinsample.features.SearchFragment"
+        android:label="search"
+        tools:layout="@layout/fragment_search">
+
+        <action
+            android:id="@+id/navigate_to_profile"
+            app:destination="@id/navigation_profile"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.ananth.mvvmkotlinsample.features.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile">
+
+        <action
+            android:id="@+id/navigate_to_followers"
+            app:destination="@id/navigation_followers"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/navigate_to_followings"
+            app:destination="@id/navigation_followings"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/navigate_to_gists"
+            app:destination="@id/navigation_gists"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/navigate_to_repository"
+            app:destination="@id/navigation_repository"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <argument
+            android:name="userName"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_followers"
+        android:name="com.ananth.mvvmkotlinsample.features.followers.FollowersFragment"
+        android:label="@string/followers"
+        tools:layout="@layout/fragment_followers">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_followings"
+        android:name="com.ananth.mvvmkotlinsample.features.followings.FollowingsFragment"
+        android:label="@string/followings"
+        tools:layout="@layout/fragment_followings">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_gists"
+        android:name="com.ananth.mvvmkotlinsample.features.gists.GistsFragment"
+        android:label="@string/gists"
+        tools:layout="@layout/fragment_gists">
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_repository"
+        android:name="com.ananth.mvvmkotlinsample.features.Repository.RepositoryFragment"
+        android:label="@string/repos"
+        tools:layout="@layout/fragment_repository">
+    </fragment>
+</navigation>

@@ -7,4 +7,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="CircularProgressmain" parent="Material.Drawable.CircularProgress">
+        <item name="cpd_strokeColor">@color/colorPrimaryDark</item>
+        <item name="cpd_strokeSize">4dp</item>
+    </style>
+
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="repo_text_style">
+        <item name="android:textSize">@dimen/text_size_16</item>
+        <item name="android:textColor">@color/primaryText</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 </resources>

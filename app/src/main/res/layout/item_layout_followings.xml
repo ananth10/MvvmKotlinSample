@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+   <!-- <data>
+
+        <variable
+            name="following"
+            type="com.ananth.rxandroidwithretrofit.data.local.entity.FollowingEntity" />
+
+    </data>-->
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <com.ananth.mvvmkotlinsample.common.CircularView
+            android:id="@+id/CvUserImage"
+            android:layout_width="@dimen/dimen_60dp"
+            android:layout_height="@dimen/dimen_60dp"
+            android:layout_alignParentLeft="true"
+            android:clickable="false"
+            android:src="@drawable/noimage"/>
+
+        <TextView
+            android:id="@+id/TvUserName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="@dimen/dimen_5dp"
+            android:layout_marginRight="@dimen/dimen_5dp"
+            android:layout_toRightOf="@+id/CvUserImage"
+            android:textColor="@color/primaryText"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            tool:text="@string/username" />
+
+    </RelativeLayout>
+</layout>

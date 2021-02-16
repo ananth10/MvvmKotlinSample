@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profile"
+            type="com.ananth.mvvmkotlinsample.model.remote.profile.ProfileModel" />
+
+        <variable
+            name="handler"
+            type="com.ananth.mvvmkotlinsample.features.profile.ProfileClickEvent" />
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+        <variable
+            name="showProfileDetails"
+            type="boolean" />
+
+        <variable
+            name="isErrorOccurred"
+            type="boolean" />
+
+        <variable
+            name="errorMessage"
+            type="String" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".features.profile.ProfileFragment">
+
+        <FrameLayout
+            android:id="@+id/FlTop"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/colorPrimary">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:elevation="@dimen/dimen_2dp"
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+            <TextView
+                android:id="@+id/TvHeaderTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/profile"
+                android:textColor="#fff"
+                android:textSize="@dimen/text_size_20" />
+        </FrameLayout>
+
+
+
+        <FrameLayout
+            android:id="@+id/FlContentLay"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_350dp"
+            app:layout_constraintTop_toBottomOf="@+id/FlTop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:visibleGone="@{showProfileDetails}"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ImageView
+                android:id="@+id/IvUserBgImage"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
+                app:backgroundImageUrl="@{profile.avatarUrl}"
+                android:scaleType="fitXY" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_350dp"
+                android:background="@color/transparent" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/dimen_10dp"
+                android:gravity="top|center"
+                android:orientation="vertical">
+
+                <com.ananth.mvvmkotlinsample.common.CircularView
+                    android:id="@+id/CvUserImage"
+                    android:layout_width="@dimen/dimen_80dp"
+                    android:layout_height="@dimen/dimen_80dp"
+                    android:clickable="false"
+                    app:imageUrl="@{profile.avatarUrl}"
+                    android:src="@drawable/noimage" />
+
+                <TextView
+                    android:id="@+id/TvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_20dp"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_size_18"
+                    android:text="@{profile.name}"
+                    android:textStyle="bold"
+                    tools:text="@string/username" />
+
+                <TextView
+                    android:id="@+id/TvCompanyName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    tools:text="@string/company"
+                    android:text="@{profile.company}"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_size_16" />
+
+                <TextView
+                    android:id="@+id/TvUserLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_size_14"
+                    android:text="@{profile.location}"
+                    tools:text="@string/location" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_1dp"
+                    android:background="#fff" />
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_80dp"
+                    android:layout_gravity="bottom"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <LinearLayout
+                        android:id="@+id/LlRepos"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:onClick="@{()->handler.onRepoClick()}"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/repos"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14" />
+
+                        <TextView
+                            android:id="@+id/TvReposCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_5dp"
+                            android:gravity="center"
+                            android:maxLength="5"
+                            android:singleLine="true"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14"
+                            android:text="@{Integer.toString(safeUnbox(profile.publicRepos))}"
+                            android:textStyle="bold"
+                            tools:text="40" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="@dimen/dimen_80dp"
+                        android:background="#fff" />
+
+                    <LinearLayout
+                        android:id="@+id/LlGist_lay"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{()->handler.onGistsClick()}"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/gists"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14" />
+
+                        <TextView
+                            android:id="@+id/TvGistCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_5dp"
+                            android:gravity="center"
+                            android:maxLength="5"
+                            android:singleLine="true"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14"
+                            android:text="@{Integer.toString(safeUnbox(profile.publicGists))}"
+                            android:textStyle="bold"
+                            tools:text="40" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="@dimen/dimen_80dp"
+                        android:background="#fff" />
+
+                    <LinearLayout
+                        android:id="@+id/LlFollowers"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{()->handler.onFollowersClick()}"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/followers"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14" />
+
+                        <TextView
+                            android:id="@+id/TvFollowersCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_5dp"
+                            android:gravity="center"
+                            android:maxLength="5"
+                            android:singleLine="true"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14"
+                            android:text="@{Integer.toString(safeUnbox(profile.followers))}"
+                            android:textStyle="bold"
+                            tools:text="40" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/dimen_1dp"
+                        android:layout_height="@dimen/dimen_80dp"
+                        android:background="#fff" />
+
+                    <LinearLayout
+                        android:id="@+id/LlFollowings"
+                        android:layout_width="@dimen/dimen_0dp"
+                        android:layout_height="match_parent"
+                        android:onClick="@{()->handler.onFollowingClick()}"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="@dimen/dimen_5dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/followings"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14" />
+
+                        <TextView
+                            android:id="@+id/TvFollowingsCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_5dp"
+                            android:gravity="center"
+                            android:maxLength="5"
+                            android:singleLine="true"
+                            android:textColor="#fff"
+                            android:textSize="@dimen/text_size_14"
+                            android:text="@{Integer.toString(safeUnbox(profile.following))}"
+                            android:textStyle="bold"
+                            tools:text="40" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </FrameLayout>
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/FlContentLay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            bind:isErrorOccurred="@{isErrorOccurred}"
+            bind:errorMessage="@{errorMessage}"
+            layout="@layout/no_data_found"/>
+
+        <include
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintTop_toBottomOf="@+id/FlContentLay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            bind:isLoading="@{isLoading}"
+            layout="@layout/progress_loader"/>
+        <TextView
+            android:id="@+id/TvHappyCoding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/FlContentLay"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/dimen_60dp"
+            android:gravity="center"
+            android:text="Happy Coding :)"
+            android:textColor="#000"
+            android:textSize="@dimen/text_size_18"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
