@@ -1,6 +1,6 @@
 package com.ananth.mvvmkotlinsample.di
 
-import com.ananth.mvvmkotlinsample.features.Repository.RepositoryViewModel
+import com.ananth.mvvmkotlinsample.features.repository.RepositoryViewModel
 import com.ananth.mvvmkotlinsample.features.followers.FollowersViewModel
 import com.ananth.mvvmkotlinsample.features.followings.FollowingsViewModel
 import com.ananth.mvvmkotlinsample.features.gists.GistsViewModel

@@ -58,7 +58,7 @@ class ProfileFragment : Fragment(), ProfileClickEvent {
                     binding.isLoading = false
                     binding.showProfileDetails = false
                     binding.isErrorOccurred = true
-                    binding.errorMessage = state.errorMessage
+                    binding.errorMessage = state.errorMessage?:""
                 }
             }
         })

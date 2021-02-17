@@ -1,4 +1,4 @@
-package com.ananth.mvvmkotlinsample.features.Repository
+package com.ananth.mvvmkotlinsample.features.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -13,15 +13,17 @@ import kotlinx.coroutines.launch
 
 class RepositoryViewModel(private val userRepository: UserRepository): ViewModel() {
 
-    private val _repositoryLiveData=MutableLiveData<State<RepositoryModel>>()
-    val repositoryLiveData:LiveData<State<RepositoryModel>>
+    private val _repositoryLiveData=MutableLiveData<State<List<RepositoryModel.RepositoryDataItem>>>()
+    val repositoryLiveData:LiveData<State<List<RepositoryModel.RepositoryDataItem>>>
     get() = _repositoryLiveData
-
+    val repositoryList= MutableLiveData<List<RepositoryModel.RepositoryDataItem>>()
     fun getUserRepository(){
         viewModelScope.launch(Dispatchers.IO) {
             userRepository.getUserRepository().collect {
-                _repositoryLiveData.value=it
+                _repositoryLiveData.postValue(it)
             }
         }
     }
+
+
 }

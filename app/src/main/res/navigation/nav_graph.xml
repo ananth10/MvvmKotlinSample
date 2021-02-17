@@ -85,7 +85,7 @@
 
     <fragment
         android:id="@+id/navigation_repository"
-        android:name="com.ananth.mvvmkotlinsample.features.Repository.RepositoryFragment"
+        android:name="com.ananth.mvvmkotlinsample.features.repository.RepositoryFragment"
         android:label="@string/repos"
         tools:layout="@layout/fragment_repository">
     </fragment>

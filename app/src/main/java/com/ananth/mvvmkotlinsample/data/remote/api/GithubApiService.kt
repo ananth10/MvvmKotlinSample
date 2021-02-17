@@ -22,7 +22,7 @@ interface GithubApiService {
     suspend fun getGithubUserFollowings(@Path("username") userName: String): Response<FollowingsModel>
 
     @GET("users/{username}/repos")
-    suspend fun getGithubUserRepos(@Path("username") userName: String): Response<RepositoryModel>
+    suspend fun getGithubUserRepos(@Path("username") userName: String): Response<List<RepositoryModel.RepositoryDataItem>>
 
     @GET("users/{username}/gists")
     suspend fun getGithubGists(@Path("username") userName: String): Response<GistsModel>

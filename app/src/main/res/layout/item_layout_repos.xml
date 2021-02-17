@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
 
-   <!-- <data>
+    <data>
 
         <variable
-            name="repository"
-            type="com.ananth.rxandroidwithretrofit.data.local.entity.RepositoryEntity" />
+            name="dataModel"
+            type="com.ananth.mvvmkotlinsample.model.remote.repository.RepositoryModel.RepositoryDataItem" />
 
-    </data>-->
+    </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -28,6 +28,7 @@
             android:textColor="@color/primaryText"
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
+            android:text="@{dataModel.name}"
             tool:text="Title" />
 
         <TextView
@@ -41,6 +42,7 @@
             android:singleLine="true"
             android:textColor="@color/secondaryText"
             android:textSize="@dimen/text_size_16"
+            android:text="@{dataModel.description}"
             tool:text="Description" />
 
         <TextView
@@ -52,8 +54,10 @@
             android:layout_margin="@dimen/dimen_5dp"
             android:layout_toLeftOf="@+id/LlOwner"
             android:singleLine="true"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="@dimen/text_size_16"
+            android:autoLink="web"
+            android:text="@{dataModel.url}"
             tool:text="url" />
 
         <LinearLayout
@@ -81,6 +85,7 @@
                 android:layout_marginTop="@dimen/dimen_5dp"
                 android:textColor="@color/colorAccent"
                 android:textSize="@dimen/text_size_14"
+                android:text="@{dataModel.owner.login}"
                 tool:text="Owner" />
         </LinearLayout>
     </RelativeLayout>
