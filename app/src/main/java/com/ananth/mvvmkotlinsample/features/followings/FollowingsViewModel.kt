@@ -13,14 +13,15 @@ import kotlinx.coroutines.launch
 
 class FollowingsViewModel(val followingsRepository: FollowingsRepository):ViewModel() {
 
-    private val _followingsLiveData=MutableLiveData<State<FollowingsModel>>()
-    val followingsLiveData:LiveData<State<FollowingsModel>>
+    private val _followingsLiveData=MutableLiveData<State<List<FollowingsModel.FollowingsModelItem>>>()
+    val followingsLiveData:LiveData<State<List<FollowingsModel.FollowingsModelItem>>>
     get() = _followingsLiveData
+    val followingList=MutableLiveData<List<FollowingsModel.FollowingsModelItem>>()
 
     fun getUserFollowings(){
         viewModelScope.launch(Dispatchers.IO) {
             followingsRepository.getUserFollowings().collect {
-                _followingsLiveData.value=it
+                _followingsLiveData.postValue(it)
             }
         }
     }

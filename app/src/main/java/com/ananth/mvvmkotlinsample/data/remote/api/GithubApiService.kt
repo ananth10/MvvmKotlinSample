@@ -16,15 +16,15 @@ interface GithubApiService {
     suspend fun getGithubUserInfo(@Path("username") userName:String): Response<ProfileModel>
 
     @GET("users/{username}/followers")
-    suspend fun getGithubUserFollowers(@Path("username") userName: String): Response<FollowersModel>
+    suspend fun getGithubUserFollowers(@Path("username") userName: String): Response<List<FollowersModel.FollowersModelItem>>
 
-    @GET("users/{username}/followings")
-    suspend fun getGithubUserFollowings(@Path("username") userName: String): Response<FollowingsModel>
+    @GET("users/{username}/following")
+    suspend fun getGithubUserFollowings(@Path("username") userName: String): Response<List<FollowingsModel.FollowingsModelItem>>
 
     @GET("users/{username}/repos")
     suspend fun getGithubUserRepos(@Path("username") userName: String): Response<List<RepositoryModel.RepositoryDataItem>>
 
     @GET("users/{username}/gists")
-    suspend fun getGithubGists(@Path("username") userName: String): Response<GistsModel>
+    suspend fun getGithubGists(@Path("username") userName: String): Response<List<GistsModel.GistsModelItem>>
 
 }

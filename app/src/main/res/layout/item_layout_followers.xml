@@ -3,19 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools">
 
-   <!-- <data>
+    <data>
 
         <variable
-            name="followers"
-            type="com.ananth.rxandroidwithretrofit.data.local.entity.FollowersEntity" />
+            name="dataModel"
+            type="com.ananth.mvvmkotlinsample.model.remote.followers.FollowersModel.FollowersModelItem" />
 
-    </data>-->
+    </data>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_10dp"
+        android:paddingTop="@dimen/dimen_10dp"
+        android:paddingBottom="@dimen/dimen_10dp"
         android:orientation="vertical">
 
         <com.ananth.mvvmkotlinsample.common.CircularView
@@ -23,6 +25,7 @@
             android:layout_width="@dimen/dimen_60dp"
             android:layout_height="@dimen/dimen_60dp"
             android:layout_alignParentLeft="true"
+            app:imageUrl="@{dataModel.avatarUrl}"
             android:clickable="false"
             android:src="@drawable/noimage"/>
 
@@ -35,6 +38,7 @@
             android:layout_marginRight="@dimen/dimen_5dp"
             android:layout_toRightOf="@+id/CvUserImage"
             android:textColor="@color/primaryText"
+            android:text="@{dataModel.login}"
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
             tool:text="@string/username" />

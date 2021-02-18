@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dataModel"
+            type="com.ananth.mvvmkotlinsample.model.remote.gists.GistsModel.GistsModelItem" />
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5dp"
+        android:layout_marginBottom="@dimen/dimen_10dp">
+
+        <TextView
+            android:id="@+id/TvDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TvTitle"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_toLeftOf="@+id/LlOwner"
+            android:singleLine="true"
+            android:textColor="@color/secondaryText"
+            android:textSize="@dimen/text_size_16"
+            android:text="@{dataModel.description}"
+            tool:text="Description" />
+
+        <TextView
+            android:id="@+id/TvUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/TvDescription"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:layout_toLeftOf="@+id/LlOwner"
+            android:singleLine="true"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/text_size_16"
+            android:autoLink="web"
+            android:text="@{dataModel.url}"
+            tool:text="url" />
+
+        <LinearLayout
+            android:id="@+id/LlOwner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_5dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Owner"
+                android:textColor="@color/primaryText"
+                android:textSize="@dimen/text_size_16"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TvOwnerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="@dimen/text_size_14"
+                android:text="@{dataModel.owner.login}"
+                tool:text="Owner" />
+        </LinearLayout>
+    </RelativeLayout>
+</layout>

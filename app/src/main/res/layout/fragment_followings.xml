@@ -1,13 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.ananth.mvvmkotlinsample.features.followings.FollowingsViewModel" />
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+        <variable
+            name="isErrorOccurred"
+            type="boolean" />
+
+        <variable
+            name="showFollowingList"
+            type="boolean" />
+
+        <variable
+            name="errorMessage"
+            type="String" />
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".features.followings.FollowingsFragment">
-
 
         <FrameLayout
             android:id="@+id/FlToolbar"
@@ -36,7 +59,7 @@
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/followingList"
+            android:id="@+id/RvFollowingList"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dimen_0dp"
             android:layout_below="@+id/FlToolbar"
@@ -44,8 +67,31 @@
             app:layout_constraintTop_toBottomOf="@+id/FlToolbar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_margin="@dimen/dimen_5dp"
+            app:visibleGone="@{showFollowingList}"
+            app:itemData="@{viewModel.followingList}"
             tools:listitem="@layout/item_layout_followings" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <include
+            bind:errorMessage="@{errorMessage}"
+            bind:isErrorOccurred="@{isErrorOccurred}"
+            layout="@layout/no_data_found"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FlContentLay" />
+
+        <include
+            bind:isLoading="@{isLoading}"
+            layout="@layout/progress_loader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/FlContentLay" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

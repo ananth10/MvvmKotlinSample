@@ -6,8 +6,8 @@ import org.koin.dsl.module
 val repositoryModules= module {
 
     single { UserRepository(get(),get()) }
-    single { FollowersRepository(get()) }
-    single { FollowingsRepository(get()) }
-    single { GistsRepository(get()) }
+    single { FollowersRepository(get(),get()) }
+    single { FollowingsRepository(get(),get()) }
+    single { GistsRepository(get(),get()) }
     single { ProfileRepository(get(),get()) }
 }

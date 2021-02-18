@@ -47,7 +47,12 @@ class RepositoryFragment : Fragment() {
                     binding.showReposList = true
                     val reposList=state.data as ArrayList<RepositoryModel.RepositoryDataItem>
                     viewModel.repositoryList.postValue(reposList)
-                    reposList?.let { setRepositoryAdapterToRecyclerView(it) }
+                    if(reposList.isNotEmpty()){
+                        reposList?.let { setRepositoryAdapterToRecyclerView(it) }
+                    }else{
+                        binding.isErrorOccurred = true
+                        binding.showReposList = false
+                    }
                 }
                 is State.Error -> {
                     binding.isLoading = false
@@ -70,9 +75,7 @@ class RepositoryFragment : Fragment() {
         val repositoryAdapter=RepositoryAdapter()
         binding.RvRepoList.apply {
             adapter=repositoryAdapter
-            if(repositoryList.isNotEmpty()){
-                repositoryAdapter.setData(repositoryList)
-            }
+            repositoryAdapter.setData(repositoryList)
         }
     }
 

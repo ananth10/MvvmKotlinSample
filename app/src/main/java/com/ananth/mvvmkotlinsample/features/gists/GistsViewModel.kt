@@ -13,14 +13,14 @@ import kotlinx.coroutines.launch
 
 class GistsViewModel(private val gistsRepository: GistsRepository):ViewModel() {
 
-    private val _gistsLiveData=MutableLiveData<State<GistsModel>>()
-    val gistsLiveData: LiveData<State<GistsModel>>
+    private val _gistsLiveData=MutableLiveData<State<List<GistsModel.GistsModelItem>>>()
+    val gistsLiveData: LiveData<State<List<GistsModel.GistsModelItem>>>
     get() = _gistsLiveData
-
+    val gistsList=MutableLiveData<List<GistsModel.GistsModelItem>>()
     fun getUserGists(){
         viewModelScope.launch(Dispatchers.IO) {
             gistsRepository.getUserGists().collect {
-                _gistsLiveData.value=it
+                _gistsLiveData.postValue(it)
             }
         }
     }
