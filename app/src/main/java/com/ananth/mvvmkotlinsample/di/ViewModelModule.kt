@@ -5,6 +5,7 @@ import com.ananth.mvvmkotlinsample.features.followers.FollowersViewModel
 import com.ananth.mvvmkotlinsample.features.followings.FollowingsViewModel
 import com.ananth.mvvmkotlinsample.features.gists.GistsViewModel
 import com.ananth.mvvmkotlinsample.features.profile.ProfileViewModel
+import com.ananth.mvvmkotlinsample.features.search.SearchViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -14,4 +15,5 @@ val viewModelModules= module {
     viewModel { GistsViewModel(get()) }
     viewModel { ProfileViewModel(get(),get()) }
     viewModel { RepositoryViewModel(get()) }
+    viewModel { SearchViewModel(get()) }
 }

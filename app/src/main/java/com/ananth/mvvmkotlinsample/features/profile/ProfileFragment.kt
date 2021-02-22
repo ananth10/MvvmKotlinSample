@@ -2,24 +2,18 @@ package com.ananth.mvvmkotlinsample.features.profile
 
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.lifecycle.Observer
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.ananth.mvvmkotlinsample.R
 import com.ananth.mvvmkotlinsample.data.remote.State
 import com.ananth.mvvmkotlinsample.databinding.FragmentProfileBinding
-import com.ananth.mvvmkotlinsample.features.SearchFragmentDirections
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.InternalCoroutinesApi
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
 
-class ProfileFragment : Fragment(), ProfileClickEvent {
+class ProfileFragment : Fragment(), ProfileClickEvent,
+    androidx.appcompat.widget.Toolbar.OnMenuItemClickListener {
 
     private val TAG = ProfileFragment::class.java.simpleName
     private val viewModel: ProfileViewModel by sharedViewModel()
@@ -62,6 +56,10 @@ class ProfileFragment : Fragment(), ProfileClickEvent {
                 }
             }
         })
+        setHasOptionsMenu(true)
+        binding.toolbar.inflateMenu(R.menu.menu_item)
+        binding.toolbar.setOnMenuItemClickListener(this)
+
     }
 
     companion object {
@@ -104,4 +102,19 @@ class ProfileFragment : Fragment(), ProfileClickEvent {
         val direction=ProfileFragmentDirections.navigateToFollowers()
         findNavController().navigate(direction)
     }
+
+    override fun onMenuItemClick(menuItem: MenuItem?): Boolean {
+        when (menuItem?.itemId) {
+            R.id.logout ->
+            {
+                viewModel.clearUserName()
+                val direction=ProfileFragmentDirections.navigateToSearch()
+                findNavController().navigate(direction)
+                return true
+            }
+
+        }
+        return false
+    }
+
 }

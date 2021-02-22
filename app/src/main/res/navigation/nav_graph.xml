@@ -7,13 +7,15 @@
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.ananth.mvvmkotlinsample.features.SearchFragment"
+        android:name="com.ananth.mvvmkotlinsample.features.search.SearchFragment"
         android:label="search"
         tools:layout="@layout/fragment_search">
 
         <action
             android:id="@+id/navigate_to_profile"
             app:destination="@id/navigation_profile"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -57,6 +59,16 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
+
+        <action
+            android:id="@+id/navigate_to_search"
+            app:destination="@id/navigation_search"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
         <argument
             android:name="userName"
             app:argType="string" />
@@ -89,4 +101,5 @@
         android:label="@string/repos"
         tools:layout="@layout/fragment_repository">
     </fragment>
+
 </navigation>

@@ -26,4 +26,6 @@ class ProfileViewModel(private val profileRepository: ProfileRepository, private
             }
         }
     }
+
+    fun clearUserName()=userManager.setUserName("")
 }
