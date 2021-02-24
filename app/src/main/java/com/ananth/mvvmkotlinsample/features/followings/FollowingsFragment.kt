@@ -1,6 +1,7 @@
 package com.ananth.mvvmkotlinsample.features.followings
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +12,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.ananth.mvvmkotlinsample.R
 import com.ananth.mvvmkotlinsample.data.remote.State
 import com.ananth.mvvmkotlinsample.databinding.FragmentFollowingsBinding
-import com.ananth.mvvmkotlinsample.model.remote.followings.FollowingsModel
+import com.ananth.mvvmkotlinsample.model.local.FollowingsEntity
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 
@@ -43,21 +44,25 @@ class FollowingsFragment : Fragment() {
                     binding.showFollowingList=false
                 }
                 is State.Success -> {
-                    binding.isErrorOccurred=false
-                    binding.isLoading=false
-                    binding.showFollowingList=true
-                    val followingsList=state.data as ArrayList<FollowingsModel.FollowingsModelItem>
-                    if(followingsList.isNotEmpty()){
-                     followingsList?.let { setFollowingsAdapterToRecyclerview(followingsList) }
-                    }else{
-                        binding.isErrorOccurred=true
+                    Handler().postDelayed({ // Added some delay, so we can see loader because it fetches data fast from database
+                        binding.isErrorOccurred=false
                         binding.isLoading=false
-                    }
+                        binding.showFollowingList=true
+                        val followingsList=state.data as ArrayList<FollowingsEntity>
+                        if(followingsList.isNotEmpty()){
+                            followingsList?.let { setFollowingsAdapterToRecyclerview(followingsList) }
+                        }else{
+                            binding.isErrorOccurred=true
+                            binding.isLoading=false
+                            binding.errorMessage = getString(R.string.no_following_found)
+                        }
+                    },1000)
                 }
                 is State.Error -> {
                     binding.isErrorOccurred=true
                     binding.isLoading=false
                     binding.showFollowingList=false
+                    binding.errorMessage = state.errorMessage
                 }
             }
         })
@@ -69,7 +74,7 @@ class FollowingsFragment : Fragment() {
         binding.RvFollowingList.itemAnimator=SlideInUpAnimator()
     }
 
-    private fun setFollowingsAdapterToRecyclerview(followingsList:List<FollowingsModel.FollowingsModelItem>){
+    private fun setFollowingsAdapterToRecyclerview(followingsList:List<FollowingsEntity>){
         val followingsAdapter=FollowingsAdapter()
         binding.RvFollowingList.apply {
             adapter=followingsAdapter

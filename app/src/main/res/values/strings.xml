@@ -15,5 +15,9 @@
     <string name="submit">Submit</string>
     <string name="company">Company</string>
     <string name="need_username">Enter your profileEntity username</string>
-    <string name="no_result_found">No Result Found</string>
+    <string name="no_repos_found">No Repository Found</string>
+    <string name="no_gists_found">No Gists Found</string>
+    <string name="no_followers_found">No Followers Found</string>
+    <string name="no_following_found">No Following Found</string>
+    <string name="something_went_wrong">Something went wrong, please try again later!!</string>
 </resources>

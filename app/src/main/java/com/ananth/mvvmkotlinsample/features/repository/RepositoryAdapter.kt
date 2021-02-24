@@ -5,14 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ananth.mvvmkotlinsample.binding.BindingAdapter
 import com.ananth.mvvmkotlinsample.databinding.ItemLayoutReposBinding
-import com.ananth.mvvmkotlinsample.model.remote.repository.RepositoryModel
+import com.ananth.mvvmkotlinsample.model.local.RepositoryEntity
 
-class RepositoryAdapter ():RecyclerView.Adapter<RepositoryAdapter.RepositoryItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<RepositoryModel.RepositoryDataItem>>{
+class RepositoryAdapter ():RecyclerView.Adapter<RepositoryAdapter.RepositoryItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<RepositoryEntity>>{
 
-  private var repositoryList=ArrayList<RepositoryModel.RepositoryDataItem>()
+  private var repositoryList=ArrayList<RepositoryEntity>()
  inner class RepositoryItemViewHolder(private var itemLayoutReposBinding:ItemLayoutReposBinding):RecyclerView.ViewHolder(itemLayoutReposBinding.root) {
 
-     fun bindItem(repositoryDataItem:RepositoryModel.RepositoryDataItem){
+     fun bindItem(repositoryDataItem:RepositoryEntity){
          with(itemLayoutReposBinding){
            dataModel= repositoryDataItem
          }
@@ -32,8 +32,8 @@ class RepositoryAdapter ():RecyclerView.Adapter<RepositoryAdapter.RepositoryItem
        holder.bindItem(repositoryDataItem)
     }
 
-    override fun setData(data: List<RepositoryModel.RepositoryDataItem>) {
-        repositoryList= data as ArrayList<RepositoryModel.RepositoryDataItem>
+    override fun setData(data: List<RepositoryEntity>) {
+        repositoryList= data as ArrayList<RepositoryEntity>
         notifyDataSetChanged()
     }
 

@@ -7,7 +7,7 @@
 
         <variable
             name="dataModel"
-            type="com.ananth.mvvmkotlinsample.model.remote.followers.FollowersModel.FollowersModelItem" />
+            type="com.ananth.mvvmkotlinsample.model.local.FollowersEntity" />
 
     </data>
 
@@ -25,7 +25,7 @@
             android:layout_width="@dimen/dimen_60dp"
             android:layout_height="@dimen/dimen_60dp"
             android:layout_alignParentLeft="true"
-            app:imageUrl="@{dataModel.avatarUrl}"
+            app:imageUrl="@{dataModel.avatar_url}"
             android:clickable="false"
             android:src="@drawable/noimage"/>
 

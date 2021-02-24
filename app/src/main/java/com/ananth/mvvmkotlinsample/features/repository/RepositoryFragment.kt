@@ -1,15 +1,17 @@
 package com.ananth.mvvmkotlinsample.features.repository
 
 import android.os.Bundle
+import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
+import com.ananth.mvvmkotlinsample.R
 import com.ananth.mvvmkotlinsample.data.remote.State
 import com.ananth.mvvmkotlinsample.databinding.FragmentRepositoryBinding
-import com.ananth.mvvmkotlinsample.model.remote.repository.RepositoryModel
+import com.ananth.mvvmkotlinsample.model.local.RepositoryEntity
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 import org.koin.android.viewmodel.ext.android.sharedViewModel
 import java.util.ArrayList
@@ -42,17 +44,21 @@ class RepositoryFragment : Fragment() {
                     binding.showReposList = false
                 }
                 is State.Success -> {
-                    binding.isErrorOccurred = false
-                    binding.isLoading = false
-                    binding.showReposList = true
-                    val reposList=state.data as ArrayList<RepositoryModel.RepositoryDataItem>
-                    viewModel.repositoryList.postValue(reposList)
-                    if(reposList.isNotEmpty()){
-                        reposList?.let { setRepositoryAdapterToRecyclerView(it) }
-                    }else{
-                        binding.isErrorOccurred = true
-                        binding.showReposList = false
-                    }
+                    Handler().postDelayed({ // Added some delay, so we can see loader because it fetches data fast from database
+                        binding.isErrorOccurred = false
+                        binding.isLoading = false
+                        binding.showReposList = true
+                        val reposList=state.data as ArrayList<RepositoryEntity>
+                        viewModel.repositoryList.postValue(reposList)
+                        if(reposList.isNotEmpty()){
+                            reposList?.let { setRepositoryAdapterToRecyclerView(it) }
+                        }else{
+                            binding.isErrorOccurred = true
+                            binding.showReposList = false
+                            binding.errorMessage = getString(R.string.no_repos_found)
+                        }
+                    }, 1000)
+
                 }
                 is State.Error -> {
                     binding.isLoading = false
@@ -71,7 +77,7 @@ class RepositoryFragment : Fragment() {
 
     }
 
-    private fun setRepositoryAdapterToRecyclerView(repositoryList:List<RepositoryModel.RepositoryDataItem>){
+    private fun setRepositoryAdapterToRecyclerView(repositoryList:List<RepositoryEntity>){
         val repositoryAdapter=RepositoryAdapter()
         binding.RvRepoList.apply {
             adapter=repositoryAdapter

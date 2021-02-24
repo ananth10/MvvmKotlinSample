@@ -45,7 +45,6 @@ class ProfileFragment : Fragment(), ProfileClickEvent,
                     binding.isErrorOccurred = false
                     binding.isLoading = false
                     binding.showProfileDetails = true
-                    Log.i(TAG, state.data.name)
                     binding.profile = state.data
                 }
                 is State.Error -> {
@@ -108,6 +107,7 @@ class ProfileFragment : Fragment(), ProfileClickEvent,
             R.id.logout ->
             {
                 viewModel.clearUserName()
+                viewModel.clearDatabase()
                 val direction=ProfileFragmentDirections.navigateToSearch()
                 findNavController().navigate(direction)
                 return true

@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ananth.mvvmkotlinsample.binding.BindingAdapter
 import com.ananth.mvvmkotlinsample.databinding.ItemLayoutFollowingsBinding
-import com.ananth.mvvmkotlinsample.model.remote.followings.FollowingsModel
+import com.ananth.mvvmkotlinsample.model.local.FollowingsEntity
 
-class FollowingsAdapter:RecyclerView.Adapter<FollowingsAdapter.FollowingsItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<FollowingsModel.FollowingsModelItem>> {
+class FollowingsAdapter:RecyclerView.Adapter<FollowingsAdapter.FollowingsItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<FollowingsEntity>> {
 
-    private var followingsList=ArrayList<FollowingsModel.FollowingsModelItem>()
+    private var followingsList=ArrayList<FollowingsEntity>()
 
     inner class FollowingsItemViewHolder(private val itemLayoutFollowingsBinding:ItemLayoutFollowingsBinding):RecyclerView.ViewHolder(itemLayoutFollowingsBinding.root){
 
-        fun bindItem(followingsModelItem: FollowingsModel.FollowingsModelItem){
+        fun bindItem(followingsModelItem: FollowingsEntity){
              with(itemLayoutFollowingsBinding){
                  dataModel=followingsModelItem
              }
@@ -33,8 +33,8 @@ class FollowingsAdapter:RecyclerView.Adapter<FollowingsAdapter.FollowingsItemVie
       holder.bindItem(followingsModelItem)
     }
 
-    override fun setData(data: List<FollowingsModel.FollowingsModelItem>) {
-       followingsList=data as ArrayList<FollowingsModel.FollowingsModelItem>
+    override fun setData(data: List<FollowingsEntity>) {
+       followingsList=data as ArrayList<FollowingsEntity>
        notifyDataSetChanged()
     }
 }

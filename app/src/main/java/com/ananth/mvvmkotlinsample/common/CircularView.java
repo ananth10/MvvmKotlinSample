@@ -25,6 +25,9 @@ import com.ananth.mvvmkotlinsample.R;
 
 import java.io.File;
 
+/**
+ * This class use to draw circle imageview
+ * */
 
 public class CircularView extends ImageView {
 

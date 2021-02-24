@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ananth.mvvmkotlinsample.binding.BindingAdapter
 import com.ananth.mvvmkotlinsample.databinding.ItemLayoutGistsBinding
-import com.ananth.mvvmkotlinsample.model.remote.gists.GistsModel
+import com.ananth.mvvmkotlinsample.model.local.GistsEntity
 
-class GistsAdapter (): RecyclerView.Adapter<GistsAdapter.GistsItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<GistsModel.GistsModelItem>> {
+class GistsAdapter (): RecyclerView.Adapter<GistsAdapter.GistsItemViewHolder>(), BindingAdapter.RecyclerBindingContract<List<GistsEntity>> {
 
-    private var gistsList=ArrayList<GistsModel.GistsModelItem>()
+    private var gistsList=ArrayList<GistsEntity>()
     inner class GistsItemViewHolder(private var itemLayoutGistsBinding: ItemLayoutGistsBinding):RecyclerView.ViewHolder(itemLayoutGistsBinding.root){
 
-        fun bindItem(gistsModelItem: GistsModel.GistsModelItem){
+        fun bindItem(gistsModelItem: GistsEntity){
             with(itemLayoutGistsBinding){
                 dataModel=gistsModelItem
             }
@@ -33,8 +33,8 @@ class GistsAdapter (): RecyclerView.Adapter<GistsAdapter.GistsItemViewHolder>(),
        holder.bindItem(gistsDataItem)
     }
 
-    override fun setData(data: List<GistsModel.GistsModelItem>) {
-       gistsList=data as ArrayList<GistsModel.GistsModelItem>
+    override fun setData(data: List<GistsEntity>) {
+       gistsList=data as ArrayList<GistsEntity>
        notifyDataSetChanged()
     }
 }

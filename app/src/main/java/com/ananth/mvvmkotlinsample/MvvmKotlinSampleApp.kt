@@ -26,7 +26,8 @@ open class MvvmKotlinSampleApp: Application(){
                 storageModule,
                 userManagerModule,
                 repositoryModules,
-                viewModelModules
+                viewModelModules,
+                databaseModules
             )
         }
     }

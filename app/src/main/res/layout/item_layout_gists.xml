@@ -7,7 +7,7 @@
 
         <variable
             name="dataModel"
-            type="com.ananth.mvvmkotlinsample.model.remote.gists.GistsModel.GistsModelItem" />
+            type="com.ananth.mvvmkotlinsample.model.local.GistsEntity" />
 
     </data>
 

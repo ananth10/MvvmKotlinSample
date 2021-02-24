@@ -1,35 +1,43 @@
 package com.ananth.mvvmkotlinsample.data.remote
 
 
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import org.json.JSONObject
 import retrofit2.Response
 
 
-abstract class NetworkBoundResource<T> {
+abstract class NetworkBoundResource<ResultType> {
 
-    fun asFlow()=flow<State<T>>{
+    fun asFlow()=flow<State<ResultType>>{
 
-       emit(State.Loading())
+       emit(State.loading())
         try {
-            println("TEST11")
+         emit(State.success(fetchFromDatabase().first()))
          val apiResponse=fetchFromNetwork()
-            println("TEST22")
          val responseBody=apiResponse.body()
-            println("TEST33")
          if(apiResponse.isSuccessful && responseBody!=null){
-             println("SUCCESS::$responseBody")
-             emit(State.Success(responseBody))
+             println("TEST00")
+             saveRemoteDataToDatabase(responseBody)
+             println("TEST11")
          }else{
-             println("UNSUCCESS::$responseBody")
              val jsonObj = JSONObject(apiResponse.errorBody()!!.charStream().readText())
              emit(State.error(jsonObj.getString("message")))
+             println("TEST22::${jsonObj.getString("message")}")
          }
         }catch (e: Exception){
-            println("ERROR::${e.message}")
             emit(State.error("Something went wrong!! Try again  later.."))
+            println("TEST33----->${e.printStackTrace()}")
         }
+
+       /*Retrieve data from database and emit it*/
+        emitAll(fetchFromDatabase().map {
+            State.success(it)
+        })
     }
 
-    protected abstract suspend fun fetchFromNetwork():Response<T>
+    protected abstract suspend fun fetchFromNetwork():Response<ResultType>
+
+    protected abstract suspend fun fetchFromDatabase(): Flow<ResultType>
+
+    protected abstract suspend fun saveRemoteDataToDatabase(response:ResultType)
 }

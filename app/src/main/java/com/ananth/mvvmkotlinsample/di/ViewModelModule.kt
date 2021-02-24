@@ -13,7 +13,7 @@ val viewModelModules= module {
     viewModel { FollowersViewModel(get()) }
     viewModel { FollowingsViewModel(get()) }
     viewModel { GistsViewModel(get()) }
-    viewModel { ProfileViewModel(get(),get()) }
+    viewModel { ProfileViewModel(get(),get(),get()) }
     viewModel { RepositoryViewModel(get()) }
     viewModel { SearchViewModel(get()) }
 }

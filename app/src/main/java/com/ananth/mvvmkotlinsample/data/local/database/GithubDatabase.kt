@@ -1,22 +1,24 @@
 package com.ananth.mvvmkotlinsample.data.local.database
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
+import androidx.room.*
+import com.ananth.mvvmkotlinsample.data.local.converter.Converters
+import com.ananth.mvvmkotlinsample.data.local.converter.GistsFileTypeConverter
+import com.ananth.mvvmkotlinsample.data.local.converter.OwnerTypeConverter
+import com.ananth.mvvmkotlinsample.data.local.converter.RepositoryLicenseTypeConverter
 import com.ananth.mvvmkotlinsample.data.local.dao.*
-import com.ananth.mvvmkotlinsample.model.local.FollowingsEntity
+import com.ananth.mvvmkotlinsample.model.local.*
 import com.ananth.mvvmkotlinsample.utils.DATABASE_NAME
 
-@Database(entities = [FollowingsEntity::class],version = 1,exportSchema = false)
-
+@Database(entities = [FollowingsEntity::class,FollowersEntity::class,ProfileEntity::class,GistsEntity::class,RepositoryEntity::class],version = 1,exportSchema = false)
+@TypeConverters(Converters::class,GistsFileTypeConverter::class,OwnerTypeConverter::class,RepositoryLicenseTypeConverter::class)
 abstract class GithubDatabase:RoomDatabase() {
 
-//    abstract fun getProfileDao(): ProfileDao
-//    abstract fun getFollowersDao(): FollowersDao
+    abstract fun getProfileDao(): ProfileDao
+    abstract fun getFollowersDao(): FollowersDao
     abstract fun getFollowingsDao(): FollowingsDao
-//    abstract fun getRepositoryDao(): RepositoryDao
-//    abstract fun getGistsDao(): GistsDao
+    abstract fun getRepositoryDao(): RepositoryDao
+    abstract fun getGistsDao(): GistsDao
 
     companion object{
         @Volatile

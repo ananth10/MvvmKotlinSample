@@ -8,7 +8,7 @@
 
         <variable
             name="profile"
-            type="com.ananth.mvvmkotlinsample.model.remote.profile.ProfileModel" />
+            type="com.ananth.mvvmkotlinsample.model.local.ProfileEntity" />
 
         <variable
             name="handler"
@@ -78,7 +78,7 @@
                 android:id="@+id/IvUserBgImage"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                app:backgroundImageUrl="@{profile.avatarUrl}"
+                app:backgroundImageUrl="@{profile.avatar_url}"
                 android:scaleType="fitXY" />
 
             <ImageView
@@ -98,7 +98,7 @@
                     android:layout_width="@dimen/dimen_80dp"
                     android:layout_height="@dimen/dimen_80dp"
                     android:clickable="false"
-                    app:imageUrl="@{profile.avatarUrl}"
+                    app:imageUrl="@{profile.avatar_url}"
                     android:src="@drawable/noimage" />
 
                 <TextView
@@ -180,7 +180,7 @@
                             android:singleLine="true"
                             android:textColor="#fff"
                             android:textSize="@dimen/text_size_14"
-                            android:text="@{Integer.toString(safeUnbox(profile.publicRepos))}"
+                            android:text="@{Integer.toString(safeUnbox(profile.public_repos))}"
                             android:textStyle="bold"
                             tools:text="40" />
                     </LinearLayout>
@@ -218,7 +218,7 @@
                             android:singleLine="true"
                             android:textColor="#fff"
                             android:textSize="@dimen/text_size_14"
-                            android:text="@{Integer.toString(safeUnbox(profile.publicGists))}"
+                            android:text="@{Integer.toString(safeUnbox(profile.public_gists))}"
                             android:textStyle="bold"
                             tools:text="40" />
                     </LinearLayout>

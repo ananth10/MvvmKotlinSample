@@ -11,6 +11,9 @@ import coil.api.load
 import coil.transform.BlurTransformation
 import com.ananth.mvvmkotlinsample.R
 
+/**
+ * A binding adapter is simply a static or instance method that is used to manipulate how some user defined attributes map data bound variables to views.
+ * */
 object BindingAdapter {
 
     @JvmStatic

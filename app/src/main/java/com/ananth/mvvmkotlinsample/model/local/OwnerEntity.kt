@@ -4,9 +4,9 @@ import android.os.Parcelable
 import androidx.room.Entity
 import kotlinx.android.parcel.Parcelize
 
-@Entity(primaryKeys = ["id"],tableName = "Followings")
+@Entity(primaryKeys = ["id"],tableName = "Owner")
 @Parcelize
-data class FollowingsEntity(
+data class OwnerEntity(
     var avatar_url: String?="",
     var events_url: String?="",
     var followers_url: String?="",
@@ -25,4 +25,4 @@ data class FollowingsEntity(
     var subscriptions_url: String?="",
     var type: String?="",
     var url: String?=""
-):Parcelable
+): Parcelable
