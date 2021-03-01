@@ -11,6 +11,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * @FollowersViewModel responsible for preparing and managing the followers data for FollowersFragment
+ * @param followersRepository - responsible for providing followers data
+ * */
 class FollowersViewModel(private val followersRepository: FollowersRepository):ViewModel() {
 
     private val _followersLiveData=MutableLiveData<State<List<FollowersEntity>>>()

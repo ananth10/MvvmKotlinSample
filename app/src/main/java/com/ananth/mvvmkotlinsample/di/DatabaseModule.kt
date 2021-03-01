@@ -4,14 +4,18 @@ import android.app.Application
 import androidx.room.Room
 import com.ananth.mvvmkotlinsample.data.local.dao.*
 import com.ananth.mvvmkotlinsample.data.local.database.GithubDatabase
+import com.ananth.mvvmkotlinsample.utils.DATABASE_NAME
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
 
+/**
+ * @databaseModules here we are declared database dependency
+ * */
 val databaseModules= module {
 
 
     fun provideDatabase(application: Application):GithubDatabase{
-       return Room.databaseBuilder(application,GithubDatabase::class.java,"github")
+       return Room.databaseBuilder(application,GithubDatabase::class.java,DATABASE_NAME)
            .fallbackToDestructiveMigration()
            .build()
     }

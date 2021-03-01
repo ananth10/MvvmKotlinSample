@@ -5,7 +5,9 @@ import com.ananth.mvvmkotlinsample.model.local.*
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
-
+/**
+ * @GithubApiService interface provides methods to call API service
+ * */
 interface GithubApiService {
 
     @GET("users/{username}")

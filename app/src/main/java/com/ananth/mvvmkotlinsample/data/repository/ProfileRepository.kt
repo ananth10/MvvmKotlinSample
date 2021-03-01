@@ -12,6 +12,11 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
+
+/**
+ * @ProfileRepository responsible is to fetch profile data from API or remote server and store it in local database.
+ * this is act like mediator between database and ViewModel
+ * */
 class ProfileRepository(private val userManager:UserManager,private val githubApiService: GithubApiService, private val profileDao: ProfileDao) {
 
 

@@ -11,6 +11,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * @GistsViewModel responsible for preparing and managing the Gist data for GistsFragment
+ * @param gistsRepository - responsible for providing gist data
+ *
+ * */
 class GistsViewModel(private val gistsRepository: GistsRepository):ViewModel() {
 
     private val _gistsLiveData=MutableLiveData<State<List<GistsEntity>>>()

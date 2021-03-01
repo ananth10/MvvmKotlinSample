@@ -11,6 +11,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * @RepositoryViewModel responsible for preparing and managing the repository data for RepositoryFragment
+ * @param userRepository - responsible for providing repository data
+ *
+ * */
 class RepositoryViewModel(private val userRepository: UserRepository): ViewModel() {
 
     private val _repositoryLiveData=MutableLiveData<State<List<RepositoryEntity>>>()

@@ -12,7 +12,13 @@ import com.ananth.mvvmkotlinsample.utils.UserManager
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.collect
 
-
+/**
+ * @ProfileViewModel responsible for preparing and managing the Gist data for ProfileFragment
+ * @param profileRepository - responsible for providing profile data
+ * @param userManager - responsible for providing user cached information
+ * @param database - responsible for providing local storage data
+ *
+ * */
 class ProfileViewModel(private val profileRepository: ProfileRepository, private val userManager: UserManager, private val database: GithubDatabase):ViewModel() {
 
     private val _profileLiveData=MutableLiveData<State<ProfileEntity>>()

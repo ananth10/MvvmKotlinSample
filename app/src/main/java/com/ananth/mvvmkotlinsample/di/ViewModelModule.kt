@@ -9,6 +9,11 @@ import com.ananth.mvvmkotlinsample.features.search.SearchViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
+
+/**
+ * @userManagerModule here we are declared ViewModel dependency
+ *
+ * */
 val viewModelModules= module {
     viewModel { FollowersViewModel(get()) }
     viewModel { FollowingsViewModel(get()) }

@@ -13,6 +13,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
+/**
+ * @GistsRepository responsible is to fetch gists data from API or remote server and store it in local database.
+ * this is act like mediator between database and ViewModel
+ * */
 class GistsRepository(private val githubApiService: GithubApiService, private val userManager: UserManager, private val gistsDao: GistsDao) {
 
     fun getUserGists():Flow<State<List<GistsEntity>>>{

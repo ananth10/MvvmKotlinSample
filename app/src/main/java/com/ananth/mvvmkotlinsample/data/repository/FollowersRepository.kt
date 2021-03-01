@@ -12,6 +12,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import retrofit2.Response
 
+/**
+ * @FollowersRepository responsible is to fetch followers data from API or remote server and store it in local database.
+ * this is act like mediator between database and ViewModel
+ * */
 class FollowersRepository(private val githubApiService: GithubApiService, private val userManager: UserManager,private val followersDa:FollowersDao) {
 
     fun getUserFollowers(): Flow<State<List<FollowersEntity>>> {

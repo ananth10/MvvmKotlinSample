@@ -16,17 +16,13 @@ abstract class NetworkBoundResource<ResultType> {
          val apiResponse=fetchFromNetwork()
          val responseBody=apiResponse.body()
          if(apiResponse.isSuccessful && responseBody!=null){
-             println("TEST00")
              saveRemoteDataToDatabase(responseBody)
-             println("TEST11")
          }else{
              val jsonObj = JSONObject(apiResponse.errorBody()!!.charStream().readText())
              emit(State.error(jsonObj.getString("message")))
-             println("TEST22::${jsonObj.getString("message")}")
          }
         }catch (e: Exception){
             emit(State.error("Something went wrong!! Try again  later.."))
-            println("TEST33----->${e.printStackTrace()}")
         }
 
        /*Retrieve data from database and emit it*/
