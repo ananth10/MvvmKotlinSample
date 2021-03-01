@@ -9,7 +9,8 @@ This is developed using MVVM and Kotlin
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
-<img src="/result/mvvm_github_app.png" width="260">
+<img src="/result/search_screen.png" width="260">&emsp;<img src="/result/profile_screen.png" width="260">&emsp;<img src="/result/repo_screen.png" width="260">
+<img src="/result/gist_screen.png" width="260">&emsp;<img src="/result/followers_screen.png" width="260">&emsp;<img src="/result/following_screen.png" width="260">
 
 ## :snowman: About
 This app will fetch user related information such as profile, repos, gists, followers and following from the GitHub API and store it in the mobile local DB its called Room Database. 
