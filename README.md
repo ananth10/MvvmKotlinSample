@@ -43,7 +43,7 @@ This application uses MVVM(https://developer.android.com/jetpack/docs/guide#reco
 
 ## :bust_in_silhouette: Contact Me 
 
-Need a help?, please send a :email: to **ananthababu.v@gmail.com**
+Need a help?, please send a :email: mail to **ananthababu.v@gmail.com**
 
 
 ## License
